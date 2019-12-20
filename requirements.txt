@@ -1,0 +1,6 @@
+thinc==7.0.4
+chatterbot==1.0.5
+python-telegram-bot==12.0.0b1
+requests
+chatterbot_corpus==1.2.0
+pyyaml>=4.2b1
