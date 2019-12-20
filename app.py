@@ -25,12 +25,6 @@ lauro=67993868
 
 administradores=[lauro]
 usuarios_autorizados = [lauro]
-time_seguranca = [lauro]
-time_windows = [lauro]
-time_tsm = [lauro]
-time_redes = [lauro]
-time_linux = [lauro]
-time_virtualizacao = [lauro]
 
 def check_variavel(update, context):
     try:
