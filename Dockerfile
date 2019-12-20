@@ -23,4 +23,4 @@ RUN python3 -m pip install --upgrade && \
 
 WORKDIR /bot/
 
-CMD ["python3", "/bot/bot.py"]
+CMD ["python3", "/bot/app.py"]
