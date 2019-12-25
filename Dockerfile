@@ -10,11 +10,11 @@ ENV LC_ALL en_US.UTF-8
 ENV TZ=America/Recife
 
 RUN yum -y update 
-RUN	yum -y install epel-release 
-RUN	yum -y install python-pip 
-RUN	yum -y install python36 
-RUN	yum -y groupinstall "Development Tools" 
-RUN	yum clean all
+RUN yum -y install epel-release 
+RUN yum -y install python-pip 
+RUN yum -y install python36 
+RUN yum -y groupinstall "Development Tools" 
+RUN yum clean all
 
 ADD . /bot/
 	
@@ -22,5 +22,8 @@ RUN python3 -m pip install --upgrade && \
 	cd /bot; python3 -m pip install -r requirements.txt
 
 WORKDIR /bot/
+
+RUN touch /var/log/shared/oraculo.log
+RUN chmod 777 /var/log/shared/oraculo.log
 
 CMD ["python3", "/bot/app.py"]
