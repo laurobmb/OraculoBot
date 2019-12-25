@@ -23,7 +23,4 @@ RUN python3 -m pip install --upgrade && \
 
 WORKDIR /bot/
 
-RUN touch /var/log/oraculo.log
-RUN chmod 777 /var/log/oraculo.log
-
 CMD ["python3", "/bot/app.py"]
