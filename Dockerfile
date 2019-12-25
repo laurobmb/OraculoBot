@@ -1,5 +1,5 @@
 FROM centos:centos7
-MAINTAINER Lauro de Paula 
+MAINTAINER Lauro de Paula
 
 LABEL www.laurodepaula.com.br="10.0.0-beta"
 LABEL vendor="Bot Python"
@@ -23,7 +23,7 @@ RUN python3 -m pip install --upgrade && \
 
 WORKDIR /bot/
 
-RUN touch /var/log/shared/oraculo.log
-RUN chmod 777 /var/log/shared/oraculo.log
+RUN touch /var/log/oraculo.log
+RUN chmod 777 /var/log/oraculo.log
 
 CMD ["python3", "/bot/app.py"]

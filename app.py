@@ -13,13 +13,13 @@ fmt = ('%(asctime)s: %(threadName)s: %(name)s: %(levelname)s: %(message)s')
 logging.basicConfig(
     format=fmt,
     level=logging.INFO,
-    filename='/var/log/shared/oraculo.log',
+    filename='/var/log/oraculo.log',
     datefmt='%H:%M:%S'
     )
 logger = logging.getLogger('Oraculo_BOT') 
 
 estado='HML'
-versao_bot='157'
+versao_bot='200'
 
 lauro=67993868
 
