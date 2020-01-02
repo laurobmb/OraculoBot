@@ -21,6 +21,7 @@ estado='HML'
 versao_bot='200'
 
 lauro=67993868
+rafael=67993868
 
 administradores=[lauro]
 usuarios_autorizados = [lauro]
@@ -111,7 +112,7 @@ def start(update, context):
         logger.info("USER: {} USERNAME: {} ID: {} TYPE: start MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
 
 def voltar(update, context):
-    query=update.callback_query
+    query = update.callback_query
     user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
     validacao = valida_usuario(update, context, chat_id)
     if validacao == 0:
@@ -132,7 +133,7 @@ def voltar(update, context):
         logger.info("USER: {} USERNAME: {} ID: {} TYPE: voltar MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
 
 def start_debug_1(update, context):
-    query=update.callback_query
+    query = update.callback_query
     user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
     validacao = valida_usuario(update, context, chat_id)
 
@@ -149,7 +150,7 @@ def start_debug_1(update, context):
     logger.info("USER: {} USERNAME: {} ID: {} TYPE: start_debug MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
 
 def start_debug_2(update, context):
-    query=update.callback_query
+    query = update.callback_query
     user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
     validacao = valida_usuario(update, context, chat_id)
 
@@ -516,9 +517,6 @@ def hostname(update, context):
             context.bot.sendMessage(chat_id=chat_id, text="Esse comando so pode executar e lauro, desculpe")
 
 def chatterbot_msg(MSG):
-	chatbot = ChatBot("Magali")
-	trainer = ChatterBotCorpusTrainer(chatbot)
-	trainer.train("chatterbot.corpus.portuguese")
 	output = chatbot.get_response(str(MSG))
 	return output
 
@@ -549,4 +547,7 @@ def main():
 		updater.idle()
 
 if __name__ == '__main__':
+    chatbot = ChatBot("Magali")
+    trainer = ChatterBotCorpusTrainer(chatbot)
+    trainer.train("chatterbot.corpus.portuguese")
     main()
