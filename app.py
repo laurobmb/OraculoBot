@@ -22,9 +22,10 @@ versao_bot='200'
 
 lauro=67993868
 rafael=67993868
+camila=676091908
 
-administradores=[lauro]
-usuarios_autorizados = [lauro]
+administradores=[lauro,camila,rafael]
+usuarios_autorizados = [lauro,camila,rafael]
 
 def check_variavel(update, context):
     try:
