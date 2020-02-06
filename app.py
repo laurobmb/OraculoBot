@@ -156,12 +156,14 @@ def start_debug_2(update, context):
 
     botao01 = InlineKeyboardButton("versao", callback_data='versao')
     botao02 = InlineKeyboardButton("bop", callback_data='bop')
-    botao03 = InlineKeyboardButton("teste", callback_data='teste')
-    botao04 = InlineKeyboardButton("teste_diretorio", callback_data='teste_diretorio')
-    botao05 = InlineKeyboardButton("<<<<<<", callback_data='start_debug_1')
-    botao06 = InlineKeyboardButton("voltar", callback_data='voltar')
+    botao03 = InlineKeyboardButton("rosto", callback_data='rosto')
+    botao04 = InlineKeyboardButton("teste", callback_data='teste')
+    botao05 = InlineKeyboardButton("teste_diretorio", callback_data='teste_diretorio')
+    botao06 = InlineKeyboardButton("<<<<<<", callback_data='start_debug_1')
+    botao07 = InlineKeyboardButton("voltar", callback_data='voltar')
     buttons_list = [[botao01, botao02, botao03],
-                    [botao04, botao05, botao06]]
+                    [botao04, botao05, botao06],
+                    [botao07]]
 
     reply_markup = InlineKeyboardMarkup(buttons_list)
     context.bot.editMessageText(chat_id=chat_id, message_id=query.message.message_id, text='faça sua escolha', reply_markup=reply_markup)
@@ -199,6 +201,8 @@ def button(update, context):
         lero_lero(update,context)
     elif query.data == 'bop':
         bop(update,context)
+    elif query.data == 'rosto':
+        rosto(update,context)
 
 def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
@@ -215,7 +219,13 @@ def get_url():
     contents = requests.get('https://random.dog/woof.json').json()
     url = contents['url']
     return url
-    
+
+def thispersondoesnotexist():
+    image_url = "https://thispersondoesnotexist.com/image"
+    r = requests.get(image_url, headers={'User-Agent': 'My User Agent 1.0'}).content
+    with open("/tmp/thispersondoesnotexist.jpg",'wb') as f: 
+        f.write(r) 
+
 def frases(update, context):
     user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
     validacao = valida_usuario(update, context, chat_id)
@@ -295,6 +305,16 @@ def bop(update, context):
         context.bot.send_photo(chat_id=chat_id, photo=url)
     logger.info("USER: {} USERNAME: {} ID: {} TYPE: comando bop MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
 
+def rosto(update, context):
+    user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
+    validacao = valida_usuario(update, context, chat_id)
+    if validacao == 0:
+        thispersondoesnotexist()
+        foto="/tmp/thispersondoesnotexist.jpg"
+        context.bot.sendPhoto(chat_id=chat_id, photo=open(foto, 'rb'))
+        context.bot.sendMessage(chat_id=chat_id, text='So essas porque sou timida !!')
+    logger.info("USER: {} USERNAME: {} ID: {} TYPE: comando bop MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
+
 def echo(update, context):
     user_id,first_name,username,chat_id,text,is_bot = check_variavel(update, context)
     validacao = valida_usuario(update, context, chat_id)
@@ -331,6 +351,12 @@ def echo(update, context):
             context.bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
             context.bot.sendMessage(chat_id=chat_id, text=random.choice(d3['frases'])+' '+first_name)
 
+        elif 'quem é voce' in MsgRecebida:
+            thispersondoesnotexist()
+            foto="/tmp/thispersondoesnotexist.jpg"
+            context.bot.sendPhoto(chat_id=chat_id, photo=open(foto, 'rb'))
+            context.bot.sendMessage(chat_id=chat_id, text='Esse é meu rosto '+first_name)
+    
         elif "coisa de dev" in MsgRecebida:
             arquivo = "arquivos/dev.yaml"
             d1 = yaml_loader(arquivo)
@@ -531,6 +557,7 @@ def main():
 		updater.dispatcher.add_handler(CommandHandler('frases_dev',frases_dev))   #OK
 		updater.dispatcher.add_handler(CommandHandler('frases_inteligentes',frases_inteligentes))   #OK
 		updater.dispatcher.add_handler(CommandHandler('bop',bop))   #OK
+		updater.dispatcher.add_handler(CommandHandler('rosto',rosto))           
 		updater.dispatcher.add_handler(CommandHandler('lero_lero',lero_lero))   #OK
 #### Comandos do botão START_DEBUG
 		updater.dispatcher.add_handler(CommandHandler('teste',teste))   #OK
