@@ -1,5 +1,5 @@
-FROM centos:centos7
-MAINTAINER Lauro de Paula
+FROM centos/python-38-centos7
+LABEL maintainer="Lauro Gomes <laurobmb@gmail.com>"
 
 LABEL www.laurodepaula.com.br="10.0.0-beta"
 LABEL vendor="Bot Python"
@@ -9,18 +9,18 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 ENV TZ=America/Recife
 
-RUN yum -y update 
-RUN yum -y install epel-release 
-RUN yum -y install python-pip 
-RUN yum -y install python36 
-RUN yum -y groupinstall "Development Tools" 
-RUN yum clean all
+ARG TOKEN=868879441:AAEEG-7rd7SmeSWZ3aZpJ6qS4Xc
+ENV TOKEN="${TOKEN}"
 
-ADD . /bot/
-	
-RUN python3 -m pip install --upgrade && \
-	cd /bot; python3 -m pip install -r requirements.txt
+ARG NOMEBOT=Magali
+ENV NOMEBOT="${NOMEBOT}"
 
+ADD app.py /bot/
+COPY arquivos/* /bot/arquivos/
+COPY imagens/* /bot/imagens/
+COPY requirements.txt /bot/
 WORKDIR /bot/
 
-CMD ["python3", "/bot/app.py"]
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r requirements.txt 
+CMD ["python", "/bot/app.py"]

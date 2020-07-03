@@ -108,7 +108,7 @@ def start(update, context):
                         ]
 
         reply_markup = InlineKeyboardMarkup(buttons_list)
-        update.message.reply_text('Oi tudo bem? Meu nome e Magali, sou a sua analista virtual '+first_name+', o que voce deseja?')
+        update.message.reply_text('Oi tudo bem? Meu nome e '+NOMEBOT+', sou a sua analista virtual '+first_name+', o que voce deseja?')
         update.message.reply_text('faça sua escolha', reply_markup=reply_markup)
         logger.info("USER: {} USERNAME: {} ID: {} TYPE: start MESSAGE: {} BOT: {}".format(first_name,username,chat_id,text,is_bot))
 
@@ -343,7 +343,7 @@ def echo(update, context):
             context.bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
             context.bot.sendMessage(chat_id=chat_id, text=random.choice(d3['frases'])+' '+first_name)
 
-        elif "magali" in MsgRecebida:
+        elif NOMEBOT in MsgRecebida:
             arquivo = "arquivos/magali.yaml"
             d1 = yaml_loader(arquivo)
             d2 = json.dumps(d1)
@@ -548,34 +548,35 @@ def chatterbot_msg(MSG):
 	return output
 
 def main():
-		TOKEN='326030510:AAGgd9FzsuGD1HZt9ZNPjFagxne7FcdMP7E'
-		updater = Updater(TOKEN, use_context=True)
-		updater.dispatcher.add_handler(CommandHandler('start', start))
+    TOKEN = os.environ['TOKEN']
+    updater = Updater(TOKEN, use_context=True)
+    updater.dispatcher.add_handler(CommandHandler('start', start))
 #### Comandos COMUNS
-		updater.dispatcher.add_handler(CommandHandler('help', help))    #OK
-		updater.dispatcher.add_handler(CommandHandler('frases',frases)) #OK
-		updater.dispatcher.add_handler(CommandHandler('frases_amor',frases_amor))   #OK
-		updater.dispatcher.add_handler(CommandHandler('frases_dev',frases_dev))   #OK
-		updater.dispatcher.add_handler(CommandHandler('frases_inteligentes',frases_inteligentes))   #OK
-		updater.dispatcher.add_handler(CommandHandler('bop',bop))   #OK
-		updater.dispatcher.add_handler(CommandHandler('rosto',rosto))           
-		updater.dispatcher.add_handler(CommandHandler('lero_lero',lero_lero))   #OK
+    updater.dispatcher.add_handler(CommandHandler('help', help))    #OK
+    updater.dispatcher.add_handler(CommandHandler('frases',frases)) #OK
+    updater.dispatcher.add_handler(CommandHandler('frases_amor',frases_amor))   #OK
+    updater.dispatcher.add_handler(CommandHandler('frases_dev',frases_dev))   #OK
+    updater.dispatcher.add_handler(CommandHandler('frases_inteligentes',frases_inteligentes))   #OK
+    updater.dispatcher.add_handler(CommandHandler('bop',bop))   #OK
+    updater.dispatcher.add_handler(CommandHandler('rosto',rosto))           
+    updater.dispatcher.add_handler(CommandHandler('lero_lero',lero_lero))   #OK
 #### Comandos do botão START_DEBUG
-		updater.dispatcher.add_handler(CommandHandler('teste',teste))   #OK
-		updater.dispatcher.add_handler(CommandHandler('teste_diretorio',teste_diretorio))   #OK
-		updater.dispatcher.add_handler(CommandHandler('versao',versao)) #OK
-		updater.dispatcher.add_handler(CommandHandler('liga',liga)) #OK
-		updater.dispatcher.add_handler(CommandHandler('ping',ping)) #OK
-		updater.dispatcher.add_handler(CommandHandler('hostname',hostname)) #OK
+    updater.dispatcher.add_handler(CommandHandler('teste',teste))   #OK
+    updater.dispatcher.add_handler(CommandHandler('teste_diretorio',teste_diretorio))   #OK
+    updater.dispatcher.add_handler(CommandHandler('versao',versao)) #OK
+    updater.dispatcher.add_handler(CommandHandler('liga',liga)) #OK
+    updater.dispatcher.add_handler(CommandHandler('ping',ping)) #OK
+    updater.dispatcher.add_handler(CommandHandler('hostname',hostname)) #OK
 #### Conmandos de RESPOSTAS
-		updater.dispatcher.add_handler(CallbackQueryHandler(button))
-		updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
-		updater.dispatcher.add_error_handler(error)
-		updater.start_polling()
-		updater.idle()
+    updater.dispatcher.add_handler(CallbackQueryHandler(button))
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
+    updater.dispatcher.add_error_handler(error)
+    updater.start_polling()
+    updater.idle()
 
 if __name__ == '__main__':
-    chatbot = ChatBot("Magali")
+    NOMEBOT = os.environ['NOMEBOT']
+    chatbot = ChatBot(NOMEBOT)
     trainer = ChatterBotCorpusTrainer(chatbot)
     trainer.train("chatterbot.corpus.portuguese")
     main()
