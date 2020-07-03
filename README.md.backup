@@ -22,6 +22,16 @@ Defina também a variável com o nome do BOT, exporte a variável NOMEBOT, como 
 
 > NOMEBOT="Magali"
 
+Para o build 
+
+> podman build -t bot:v1.0 .
+
+Para execução 
+
+>podman run -it -e TOKEN="1097950478:AAFmZUy7wrwE5EJODq_4EvOlnMu5avroXLA" -e NOMEBOT="Magali" localhost/bot:v10.0
+
+
+
 Para customizar seu bot no TELEGRAM use o menu de adminsitração do @botfather [botfather](https://telegram.me/BotFather)
 
 ![](docs/botfather_004.png)
