@@ -6,7 +6,7 @@ Este bot no telegram serve para testar as funcionalidades de machine learning
 
 fonte: [chatterbot]([https://chatterbot.readthedocs.io/en/stable/)
 
-Para criação de bots no Telegram use o usuário @BotFather [botfather](https://telegram.me/BotFather), nele você vai copiar o token do seu BOT 
+######  Para criação de bots no Telegram use o usuário @BotFather [botfather](https://telegram.me/BotFather), nele você vai copiar o token do seu BOT 
 
 ![](docs/botfather_001.png)
 
@@ -22,22 +22,24 @@ Defina também a variável com o nome do BOT, exporte a variável NOMEBOT, como 
 
 > NOMEBOT="Magali"
 
-Para o build 
+##### Para o build 
 
 > podman build -t bot:v1.0 .
 
-Para execução 
+##### Para execução 
 
 >podman run -it -e TOKEN="1097950478:AAFmZUy7wrwE5EJODq_4EvOlnMu5avroXLA" -e NOMEBOT="Magali" localhost/bot:v10.0
 
-Para customizar seu bot no TELEGRAM use o menu de adminsitração do @botfather [botfather](https://telegram.me/BotFather)
+#####  Para customizar seu bot no TELEGRAM use o menu de adminsitração do @botfather [botfather](https://telegram.me/BotFather)
 
 ![](docs/botfather_004.png)
 
-Documentações usadas para criação do BOT
+### Documentações usadas para criação do BOT
 
 [python-telegram-bot](https://pypi.org/project/python-telegram-bot/)
+
 [Telegram APIs](https://core.telegram.org/)
+
 [nltk](http://www.nltk.org/)
-[]()
+
 [Chatterbot]([https://chatterbot.readthedocs.io/en/stable/)
