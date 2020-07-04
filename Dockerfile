@@ -1,4 +1,4 @@
-FROM centos/python-38-centos7
+FROM centos:8
 LABEL maintainer="Lauro Gomes <laurobmb@gmail.com>"
 
 LABEL www.laurodepaula.com.br="10.0.0-beta"
@@ -15,12 +15,20 @@ ENV TOKEN="${TOKEN}"
 ARG NOMEBOT=Magali
 ENV NOMEBOT="${NOMEBOT}"
 
+ENV LC_ALL="en_US.UTF-8"
+
 ADD app.py /bot/
 COPY arquivos/* /bot/arquivos/
 COPY imagens/* /bot/imagens/
 COPY requirements.txt /bot/
 WORKDIR /bot/
 
+RUN dnf -y install python3
+RUN dnf -y install python3-pip.noarch
+RUN dnf clean all
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt 
-CMD ["python", "/bot/app.py"]
+
+ENTRYPOINT ["python", "/bot/app.py"]
