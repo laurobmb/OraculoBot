@@ -1,5 +1,7 @@
 ### Bot Telegram on python3
 
+[![Docker Repository on Quay](https://quay.io/repository/laurobmb/bot_python_telegram/status "Docker Repository on Quay")](https://quay.io/repository/laurobmb/bot_python_telegram)
+
 Este bot no telegram serve para testar as funcionalidades de machine learning 
 
 > 	O ChatterBot é uma biblioteca Python que facilita a geração de respostas 		automatizadas às informações de um usuário. O ChatterBot usa uma seleção de algoritmos de aprendizado de máquina para produzir diferentes tipos de respostas. Isso facilita para os desenvolvedores criar bots de bate-papo e automatizar conversas com os usuários. Para mais detalhes sobre as idéias e conceitos por trás do ChatterBot, consulte o diagrama de fluxo do processo.
