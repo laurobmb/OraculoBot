@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: bot-telegram
+  name: meubot
   labels:
     name: bot-telegram
 ---
@@ -17,13 +17,15 @@ spec:
       app: bot-telegram
   template:
     metadata:
+      namespace: meubot
       labels:
         app: bot-telegram
-      namespace: meubot
     spec:
       containers:
       - name: bot
         image: quay.io/laurobmb/bot:v10.0
         env:
-          NOMEBOT: Magali
-          TOKEN: 868879441:AAEEG-7rd7Smd1MILFTMeSWZ3aZpJ6qS4Xc
+         - name: NOMEBOT
+           value: "Magali"
+         - name: TOKEN
+           value: "868879441:AAEEG-7rd7Smd1MILFTMeSWZ3aZpJ6qS4Xc"
