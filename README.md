@@ -42,4 +42,4 @@ Defina também a variável com o nome do BOT, exporte a variável NOMEBOT, como 
 
 [nltk](http://www.nltk.org/)
 
-[Chatterbot]([https://chatterbot.readthedocs.io/en/stable/)
+[Chatterbot](https://chatterbot.readthedocs.io/en/stable/)
