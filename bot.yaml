@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bot-telegram
+  labels:
+    name: bot-telegram
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot-deployment
+  namespace: meubot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bot-telegram
+  template:
+    metadata:
+      labels:
+        app: bot-telegram
+      namespace: meubot
+    spec:
+      containers:
+      - name: bot
+        image: quay.io/laurobmb/bot:v10.0
+        env:
+          NOMEBOT: Magali
+          TOKEN: 868879441:AAEEG-7rd7Smd1MILFTMeSWZ3aZpJ6qS4Xc
