@@ -23,9 +23,10 @@ spec:
     spec:
       containers:
       - name: bot
-        image: quay.io/laurobmb/bot:v10.0
+        image: quay.io/laurobmb/bot_python_telegram:latest
+        imagePullPolicy: Always
         env:
          - name: NOMEBOT
            value: "Magali"
          - name: TOKEN
-           value: "868879441:AAEEG-7rd7Smd1MILFTMeSWZ3aZpJ6qS4Xc"
+           value: "868879441:AAG-OV5QMFm9koeOdJmz1IisBE1v8HQ"
