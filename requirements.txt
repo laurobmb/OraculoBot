@@ -9,7 +9,7 @@ cryptography==2.9.2
 cymem==2.0.3
 future==0.18.2
 idna==2.10
-joblib==0.16.0
+joblib==1.2.0
 mathparse==0.1.2
 murmurhash==1.0.2
 nltk==3.5
